@@ -4,7 +4,7 @@ const { faker } = require('@faker-js/faker');
 const AWS = require("aws-sdk");
 const os = require("os")
 
-const sqs = new AWS.SQS({apiVersion: '2012-11-05'});
+const sqs = new AWS.SQS();
 
 
 exports.handler = (event, context, callback) => {
@@ -14,6 +14,8 @@ exports.handler = (event, context, callback) => {
 
     console.log("Key:", key)
 
+    console.log("Sending messages:", process.env.NUMBER_OF_MESSAGES)
+    
     let v = 0;
     while (v <= process.env.NUMBER_OF_MESSAGES) {
 
@@ -30,7 +32,6 @@ exports.handler = (event, context, callback) => {
         let body = JSON.stringify(payment_data)
 
         let params = {
-           DelaySeconds: 10,
            MessageBody: body,
            QueueUrl: process.env.SQS_QUEUE
          };
@@ -45,6 +46,7 @@ exports.handler = (event, context, callback) => {
                 console.log(ok)
             })
             .catch(err => context.fail(err))
+            v++
     }
 
 }

@@ -136,19 +136,13 @@ resource "aws_lambda_function" "fake_data" {
 
   source_code_hash = data.archive_file.lambda_source_package.output_md5
 
-  runtime = "nodejs12.x"
+  memory_size = 512
 
-  vpc_config {
-    subnet_ids         = var.private_subnets
-    security_group_ids = [
-        aws_security_group.fake_data.id
-    ]
-  }
-  
+  runtime = "nodejs12.x"  
   environment {
     variables = {
       SQS_QUEUE             = module.sqs.queue.url
-      NUMBER_OF_MESSAGES    = 1000
+      NUMBER_OF_MESSAGES    = 1
     }
   }
 }
