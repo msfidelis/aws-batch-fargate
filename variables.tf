@@ -48,3 +48,8 @@ variable "min_vcpus" {
   type    = number
   default = 6
 }
+
+variable "lambda_fake_cron" {
+  type = string
+  default = "rate(1 minute)"
+}
