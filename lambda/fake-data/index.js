@@ -17,7 +17,7 @@ exports.handler = (event, context, callback) => {
     console.log("Sending messages:", process.env.NUMBER_OF_MESSAGES)
     
     let v = 0;
-    while (v <= process.env.NUMBER_OF_MESSAGES) {
+    while (v < process.env.NUMBER_OF_MESSAGES) {
 
         let payment_data = {
             id: faker.datatype.uuid(),

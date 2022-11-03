@@ -53,3 +53,8 @@ variable "lambda_fake_cron" {
   type = string
   default = "rate(1 minute)"
 }
+
+variable "job_timeout" {
+  type    = number
+  default = 60
+}

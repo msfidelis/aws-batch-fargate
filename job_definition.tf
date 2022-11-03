@@ -3,10 +3,12 @@ resource "aws_batch_job_definition" "main" {
   type = "container"
 
   timeout {
-    attempt_duration_seconds = 60
+    attempt_duration_seconds = var.job_timeout * 2
   }
 
-  platform_capabilities = [var.computing_type]
+  platform_capabilities = [
+    var.computing_type
+  ]
 
   container_properties = <<CONTAINER_PROPERTIES
 {
@@ -20,9 +22,9 @@ resource "aws_batch_job_definition" "main" {
     {"type": "MEMORY", "value": "512"}
   ],
   "environment": [
-    {"name": "VARNAME", "value": "VARVAL"},
     {"name": "SQS_QUEUE", "value": "${module.sqs.queue.url}"},
-    {"name": "REGION", "value": "${var.aws_region}"}
+    {"name": "REGION", "value": "${var.aws_region}"},
+    {"name": "JOB_TIMEOUT", "value": "${var.job_timeout}"}
   ],  
   "executionRoleArn": "${aws_iam_role.main.arn}",
   "networkConfiguration" : {

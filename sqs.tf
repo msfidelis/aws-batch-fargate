@@ -3,5 +3,5 @@ module "sqs" {
 
     name                = var.project_name
     max_retry           = 3
-    visibility_timeout  = 30
+    visibility_timeout  = 120
 }

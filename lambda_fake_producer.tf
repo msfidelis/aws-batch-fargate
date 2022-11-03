@@ -112,7 +112,6 @@ resource "null_resource" "install_dependencies" {
   provisioner "local-exec" {
     command = "cd ./lambda/fake-data ; rm -rf node_modules && npm install --only=prod"
   }
-
   triggers = {
     release = timestamp()
   }
@@ -142,7 +141,7 @@ resource "aws_lambda_function" "fake_data" {
   environment {
     variables = {
       SQS_QUEUE             = module.sqs.queue.url
-      NUMBER_OF_MESSAGES    = 1
+      NUMBER_OF_MESSAGES    = 2000
     }
   }
 }
