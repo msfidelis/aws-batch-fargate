@@ -10,6 +10,8 @@ resource "aws_batch_job_definition" "main" {
     var.computing_type
   ]
 
+  propagate_tags = true
+
   container_properties = <<CONTAINER_PROPERTIES
 {
   "command": ["node", "index.js"],
@@ -29,7 +31,8 @@ resource "aws_batch_job_definition" "main" {
   "executionRoleArn": "${aws_iam_role.main.arn}",
   "networkConfiguration" : {
     "assignPublicIp": "ENABLED"
-  }
+  },
+  "executionRoleArn": "${aws_iam_role.main.arn}"
 }
 CONTAINER_PROPERTIES
 }

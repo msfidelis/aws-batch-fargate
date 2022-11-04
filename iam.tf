@@ -34,7 +34,8 @@ data "aws_iam_policy_document" "main" {
 
         effect  = "Allow"
         actions = [
-            "ecr:*",          
+            "ecr:*",
+            "sqs:*"
         ]
 
         resources = [ 
@@ -67,7 +68,7 @@ resource "aws_iam_role_policy_attachment" "batch" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSBatchServiceRole"
 }
 
-resource "aws_iam_role_policy_attachment" "ecr" {
+resource "aws_iam_role_policy_attachment" "ecs" {
   role       = aws_iam_role.main.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSBatchServiceRole"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }

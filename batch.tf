@@ -18,7 +18,7 @@ resource "aws_batch_compute_environment" "main" {
   service_role = aws_iam_role.main.arn
   type         = "MANAGED"
   depends_on = [
-    aws_iam_role_policy_attachment.ecr,
+    aws_iam_role_policy_attachment.ecs,
     aws_iam_role_policy_attachment.batch
   ]
 }
