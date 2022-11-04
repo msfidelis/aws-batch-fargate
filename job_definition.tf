@@ -20,8 +20,8 @@ resource "aws_batch_job_definition" "main" {
     "platformVersion": "LATEST"
   },
   "resourceRequirements": [
-    {"type": "VCPU", "value": "0.25"},
-    {"type": "MEMORY", "value": "512"}
+    {"type": "VCPU", "value": "${var.vcpu}"},
+    {"type": "MEMORY", "value": "${var.memory}"}
   ],
   "environment": [
     {"name": "SQS_QUEUE", "value": "${module.sqs.queue.url}"},
@@ -32,7 +32,13 @@ resource "aws_batch_job_definition" "main" {
   "networkConfiguration" : {
     "assignPublicIp": "ENABLED"
   },
-  "taskRoleArn": "${aws_iam_role.main.arn}"
+  "logConfiguration": {
+    "logDriver": "awslogs",
+    "options": {},
+    "secretOptions": []
+  },
+  "jobDefinitionArn": "${aws_iam_role.main.arn}",
+  "jobRoleArn": "${aws_iam_role.main.arn}"
 }
 CONTAINER_PROPERTIES
 }

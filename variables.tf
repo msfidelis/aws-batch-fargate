@@ -39,19 +39,25 @@ variable "computing_type" {
   default   = "FARGATE"
 }
 
-variable "max_vcpus" {
-  type    = number
-  default = 16
+variable "vcpu" {
+  type    = string
+  default = "0.5"
 }
 
-variable "min_vcpus" {
+
+variable "memory" {
+  type    = string
+  default = "1024"
+}
+
+variable "max_vcpus" {
   type    = number
   default = 6
 }
 
 variable "lambda_fake_cron" {
   type = string
-  default = "rate(1 minute)"
+  default = "rate(5 minutes)"
 }
 
 variable "job_timeout" {

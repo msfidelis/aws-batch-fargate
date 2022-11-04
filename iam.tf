@@ -37,6 +37,7 @@ data "aws_iam_policy_document" "main" {
         actions = [
             "ecr:*",
             "sqs:*",
+            "kms:*",
             "ecs:List*", 
             "ecs:Describe*"
         ]

@@ -6,7 +6,6 @@ AWS.config.update({region: 'us-east-1a'});
 const sqs = new AWS.SQS({apiVersion: '2012-11-05'});
 
 const queueURL      = process.env["SQS_QUEUE"] || "https://sqs.us-east-1.amazonaws.com/181560427716/aws-batch-demo";
-
 const job_timeout   = process.env["JOB_TIMEOUT"] || 500
 
 const params = {
@@ -72,12 +71,7 @@ var interval = setInterval(() => {
                 }
             });
         }
-
-        // if (data.Messages != undefined) {
-        //     ack(data.Messages)
-        // } else {
-        //     console.log("Invalid payload:", data)
-        // }
+        
     })
 }, 500)
 
