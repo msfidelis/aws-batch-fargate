@@ -32,7 +32,7 @@ resource "aws_batch_job_definition" "main" {
   "networkConfiguration" : {
     "assignPublicIp": "ENABLED"
   },
-  "executionRoleArn": "${aws_iam_role.main.arn}"
+  "taskRoleArn": "${aws_iam_role.main.arn}"
 }
 CONTAINER_PROPERTIES
 }

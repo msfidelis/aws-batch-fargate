@@ -17,7 +17,8 @@ resource "aws_iam_role" "main" {
         "Service": [
             "batch.amazonaws.com",
             "ec2.amazonaws.com",
-            "ecs-tasks.amazonaws.com"
+            "ecs-tasks.amazonaws.com",
+            "ecs.amazonaws.com"
         ]
         
         }
@@ -35,7 +36,9 @@ data "aws_iam_policy_document" "main" {
         effect  = "Allow"
         actions = [
             "ecr:*",
-            "sqs:*"
+            "sqs:*",
+            "ecs:List*", 
+            "ecs:Describe*"
         ]
 
         resources = [ 
