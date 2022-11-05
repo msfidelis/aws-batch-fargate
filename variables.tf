@@ -64,3 +64,19 @@ variable "job_timeout" {
   type    = number
   default = 60
 }
+
+variable "batch_scheduler" {
+  type    = string
+  default = "rate(5 minutes)"
+}
+
+variable "batch_array_size" {
+  type    = number
+  default = 2
+}
+
+
+variable "batch_attempts" {
+  type    = number
+  default = 1
+}

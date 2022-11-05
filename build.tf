@@ -1,3 +1,7 @@
+###################################################
+###### DESCULPA A PREGUIÇA DO PEÃO KKKKKKKKK ######
+###################################################
+
 resource "null_resource" "build" {
 
   triggers = {
