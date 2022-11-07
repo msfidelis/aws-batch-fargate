@@ -26,6 +26,7 @@ resource "aws_batch_job_definition" "main" {
   "environment": [
     {"name": "SQS_QUEUE", "value": "${module.sqs.queue.url}"},
     {"name": "REGION", "value": "${var.aws_region}"},
+    {"name": "DYNAMO_TABLE", "value": "${aws_dynamodb_table.main.id}"},
     {"name": "JOB_TIMEOUT", "value": "${var.job_timeout}"}
   ],  
   "executionRoleArn": "${aws_iam_role.main.arn}",
