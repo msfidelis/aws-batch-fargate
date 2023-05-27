@@ -13,7 +13,6 @@ exports.handler = (event, context, callback) => {
     const key = date.toISOString().slice(0, 10)
 
     console.log("Key:", key)
-
     console.log("Sending messages:", process.env.NUMBER_OF_MESSAGES)
     
     let v = 0;
